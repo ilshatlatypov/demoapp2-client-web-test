@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.After;
@@ -20,8 +22,11 @@ public class EmployeesPageTest {
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
+//        System.setProperty("webdriver.gecko.driver", "drivers/geckodriver");
+//        driver = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
         driver = new ChromeDriver();
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginWith("userone", "userone");
         assertTrue(loginPage.mainPageHeaderIsSet());
