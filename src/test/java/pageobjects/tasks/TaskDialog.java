@@ -28,6 +28,15 @@ public class TaskDialog {
         setInputValue(firstnameLocator, title);
     }
 
+    public boolean isFilledWith(String title) {
+        String titleInDialog = getInputValue(firstnameLocator);
+        return title.equals(titleInDialog);
+    }
+
+    private String getInputValue(By inputLocator) {
+        return driver.findElement(inputLocator).getAttribute("value");
+    }
+
     private void setInputValue(By inputLocator, String firstname) {
         driver.findElement(inputLocator).clear();
         driver.findElement(inputLocator).sendKeys(firstname);

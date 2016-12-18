@@ -46,6 +46,8 @@ public class TasksPageTest {
     public void taskFlow() {
         String title = "Task title";
         createTask(title);
+        String newTitle = "New task title";
+        update(title, newTitle);
         deleteLastTask();
     }
 
@@ -59,6 +61,20 @@ public class TasksPageTest {
         assertEquals("Задача сохранена", page.getSnackbarMessage());
         assertTrue(page.lastTableRowContains(title));
     }
+
+    private void update(String title, String newTitle) {
+        page.moveToLastTableRow();
+        page.clickEditButton();
+        assertTrue(dialog.wasOpened());
+        assertTrue(dialog.isFilledWith(title));
+        dialog.fill(newTitle);
+        dialog.clickSave();
+        assertTrue(dialog.wasClosed());
+        assertTrue(page.snackbarDisplayed());
+        assertEquals("Задача сохранена", page.getSnackbarMessage());
+        assertTrue(page.lastTableRowContains(newTitle));
+    }
+
 
     private void deleteLastTask() {
         page.moveToLastTableRow();

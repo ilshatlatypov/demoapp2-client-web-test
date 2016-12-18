@@ -19,6 +19,7 @@ public class TasksPage {
     private By titleColumnLocator = By.className("titleColumn");
 
     private By deleteButtonLocator = By.className("deleteButton");
+    private By editButtonLocator = By.className("editButton");
 
     private WebDriver driver;
     private WebDriverWait waitOneSec;
@@ -64,5 +65,9 @@ public class TasksPage {
 
     public void clickDeleteButton() {
         waitOneSec.until(presenceOfElementLocated(deleteButtonLocator)).click();
+    }
+
+    public void clickEditButton() {
+        waitOneSec.until(presenceOfElementLocated(editButtonLocator)).click();
     }
 }
